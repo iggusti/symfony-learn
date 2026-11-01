@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Glassmorphism Todo List CRUD</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+</head>
+<body>
+    <div class="bg-blobs">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+    </div>
+
+    <main class="container">
+        <header class="header">
+            <div>
+                <h1 class="title">? Todo List CRUD</h1>
+                <p class="subtitle">Kelola tugas dengan gaya Glassmorphism • Data tersimpan di LocalStorage</p>
+            </div>
+            <div class="stats">
+                <div class="stat-card">
+                    <span class="stat-label">Total</span>
+                    <span class="stat-value" id="stat-total">0</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-label">Selesai</span>
+                    <span class="stat-value" id="stat-completed">0</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-label">Belum</span>
+                    <span class="stat-value" id="stat-pending">0</span>
+                </div>
+            </div>
+        </header>
+
+        <section class="add-section">
+            <div class="add-card">
+                <h2 class="add-title">? Tambah Tugas Baru</h2>
+                <form id="addForm" class="add-form">
+                    <div class="form-group form-group-full">
+                        <label class="form-label" for="title">Judul Tugas</label>
+                        <input type="text" id="title" class="form-input" placeholder="Masukkan judul tugas..." required>
+                    </div>
+                    <div class="form-group form-group-full">
+                        <label class="form-label" for="description">Deskripsi</label>
+                        <input type="text" id="description" class="form-input" placeholder="Deskripsi singkat tugas..." required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="priority">Prioritas</label>
+                        <select id="priority" class="form-select" required>
+                            <option value="low">?? Rendah</option>
+                            <option value="medium">? Sedang</option>
+                            <option value="high">?? Tinggi</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="due_date">Tenggat Waktu</label>
+                        <input type="date" id="due_date" class="form-input" required>
+                    </div>
+                    <button type="submit" class="add-btn">+ Tambah Tugas</button>
+                </form>
+            </div>
+        </section>
+
+        <section class="todo-grid" id="todoGrid">
+            <!-- Todo items akan ditampilkan via JavaScript -->
+        </section>
+
+        <footer class="app-footer">
+            <p>Dibuat dengan ?? menggunakan Symfony 5.4 & Glassmorphism | CRUD dengan LocalStorage</p>
+        </footer>
+    </main>
+
+    <!-- Modal Edit -->
+    <div id="editModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">?? Edit Tugas</h2>
+                <button class="modal-close" onclick="closeEditModal()">×</button>
+            </div>
+            <form id="editForm" class="modal-form">
+                <input type="hidden" id="editId">
+                <div class="form-group">
+                    <label class="form-label" for="editTitle">Judul Tugas</label>
+                    <input type="text" id="editTitle" class="form-input" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="editDescription">Deskripsi</label>
+                    <input type="text" id="editDescription" class="form-input" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="editPriority">Prioritas</label>
+                    <select id="editPriority" class="form-select" required>
+                        <option value="low">?? Rendah</option>
+                        <option value="medium">? Sedang</option>
+                        <option value="high">?? Tinggi</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="editDueDate">Tenggat Waktu</label>
+                    <input type="date" id="editDueDate" class="form-input" required>
+                </div>
+                <div class="modal-actions">
+                    <button type="button" class="modal-btn btn-cancel" onclick="closeEditModal()">Batal</button>
+                    <button type="submit" class="modal-btn btn-save">?? Simpan Perubahan</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="{{ asset('js/app.js') }}"></script>
+</body>
+</html>
